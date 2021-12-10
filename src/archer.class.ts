@@ -6,7 +6,13 @@ export default class Archer extends Champion{
 		super(name);
 	}
 
-	attack(champion: Champion): void {
+	attack(champion: Champion): void | string{
+		if (champion instanceof Archer) {
+			return "Je ne peux pas m'attaquer"
+		}
+		if(this.HealthPoints == 0) {
+			return "Je ne peux pas attaquer je suis mort"
+		}
 		champion.decreaseHealthPoints(10);
 		this.numberOfAttacks++;
 	}
@@ -20,6 +26,8 @@ export default class Archer extends Champion{
 			champion.decreaseHealthPoints(10);
 			champion.decreaseHealthPoints(10);
 			this.numberOfAttacks = 0;
+
+			console.log(this.getName() +' used his shield and attack you twice');
 		}
 	}
 
